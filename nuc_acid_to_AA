@@ -1,13 +1,13 @@
+with open ('filename.txt', 'r') as nuc_file:
+    NA_seq = nuc_file.readline().strip()
 
-DNA = input('Input nucleic acid sequence: ')
 RNA = ''
 
-for nuc in DNA:
+for nuc in NA_seq:
     if nuc == 'T':
         RNA += 'U'
     elif nuc != 'T':
         RNA += nuc
-
 
 translation = {"UUU" : "F", "CUU" : "L", "AUU" : "I", "GUU" : "V",
            "UUC" : "F", "CUC" : "L", "AUC" : "I", "GUC" : "V",
@@ -27,13 +27,18 @@ translation = {"UUU" : "F", "CUU" : "L", "AUU" : "I", "GUU" : "V",
            "UGG" : "W", "CGG" : "R", "AGG" : "R", "GGG" : "G"
            }
 
-protein_string = ""
 
-if len(RNA)%3==0:
-    for i in range(0, len(RNA), 3):
-        if translation[RNA[i:i+3]] == "STOP":
-            break
-        protein_string += translation[RNA[i:i+3]]
-    print('Amino acid sequence: ' + protein_string)
-else:
-    print('Check alignment')
+def trans(RNA):
+    protein_string = ""
+
+    if len(RNA)%3==0:
+        for i in range(0, len(RNA), 3):
+            if translation[RNA[i:i+3]] == "STOP":
+                break
+            protein_string += translation[RNA[i:i+3]]
+        print('Amino acid sequence: ' + protein_string)
+    else:
+        print('Check alignment')
+        
+trans(RNA)
+
