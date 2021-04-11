@@ -1,5 +1,6 @@
 with open ('filename.txt', 'r') as nuc_file:
     NA_seq = nuc_file.readline().strip()
+nuc_file.close()
 
 RNA = ''
 
